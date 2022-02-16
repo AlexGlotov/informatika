@@ -17,27 +17,32 @@ public:
         this->speed = speed;
 
     };
-    ~WarMachine(){
-    
+    ~WarMachine() {
+
     };
     virtual double getWeight() = 0; // получить массу
     virtual double getTimeWork() = 0; //получить максимальное время автономной работы
     virtual double getMaxSpeed() = 0; // получить максимальную скорость
-    virtual double getCalibre() = 0; //размер главного калибра
     virtual double getArmorWidth() = 0; //получить среднюю толщину брони
     virtual double getSpeed() = 0; // получить текущую скорость; по умолчанию - ноль
     virtual void setSpeed() = 0; //установить скорость движения; ограничена максимальной
+    virtual void setStartCoord() = 0;
 protected:
     string name;
     double weight;
     double MaxTime;
     double MaxSpeed;
-    double speed;
+    double speed = 0;
     double armor;
+    int x;
+    int y;
+    int z;
 };
+
+
 
 int main()
 {
-    //тестовый код - надо придумать и написать
+    WarMachine obj1 = new SupportTank;
     return 0;
 }
