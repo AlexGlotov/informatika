@@ -40,6 +40,7 @@ public:
     float time_to_fly(int f_x,int f_y, int a_x, int a_y, float Ammount_of_fuel, float fuel_consumption) {
         float length = sqrt(pow(a_x - f_x, 2) + pow(a_y - f_y, 2));
         if (length / fuel_consumption > Ammount_of_fuel) {
+            cout << " ===ERROR===" << endl;
             cout << "Not enough fuel" << endl;
         }
         else {
