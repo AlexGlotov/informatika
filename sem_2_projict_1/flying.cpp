@@ -5,18 +5,52 @@ public:
     virtual float getLength() = 0;
     virtual float getHeight() = 0;
     double getWeight() {
-        return this->weight;
-    }
+        cout << this->weight << " tons" << endl;
+    };
     double getTimeWork() {
-        return Ammount_of_fuel / Fuel_consumption;
-    }
+        cout << this->MaxTime << " minutes" << endl;
+    };
     double getMaxSpeed() {
-        return MaxSpeed;
+        cout << this->MaxSpeed << " km/h" << endl;
+    };
+    double getArmor() {
+        cout << this->armor << " mm" << endl;
+    };
+    double getSpeed() {
+        cout << this->speed << " km/h" << endl;
+    };
+    void setSpeed() {
+        double u;
+        cout << endl << "Enter new speed" << endl;
+        while (true) {
+            cin >> u;
+            if (u <= this->MaxSpeed && u >= (-1) * this->MaxSpeed) {
+                this->speed = u;
+                cout << endl;
+                return;
+            }
+            else {
+                cout << endl << "Error. Maximum speed = " << getMaxSpeed() << endl;
+            }
+        }
+    };
+    void consumption(float Fuel_consumption, float speed) {
+        Fuel_consumption *= (speed / cons_speed);
     }
-    double getCalibre() {
-        return Calibre;
+    float time_to_fly(int f_x,int f_y, int a_x, int a_y, float Ammount_of_fuel, float fuel_consumption) {
+        float length = sqrt(pow(a_x - f_x, 2) + pow(a_y - f_y, 2));
+        if (length / fuel_consumption > Ammount_of_fuel) {
+            cout << "Not enough fuel" << endl;
+        }
+        else {
+            cout << "===Flight details===";
+            cout << "Time = " << length / speed << endl;
+            cout << "Fuel = " << Ammount_of_fuel - length / fuel_consumption << endl;;
+        }
     }
 protected:
+    int coord_x;
+    int coord_y;
     float Length;
     float Height;
     float Ammount_of_fuel;
@@ -24,14 +58,27 @@ protected:
     int Max_fly_height;
     int Max_fly_length;
     float Calibre;
+    float cons_speed;
+};
+
+class Airport {
+    int Ammount_of_space;
+    int coord_x;
+    int coord_y;
 };
 
 class Airplane : public FlyingMachine {
 
 public:
-    virtual float getWingspan() = 0;
-    virtual float getTakeoff_run() = 0;
-    virtual float getWing_loading() = 0;
+    float getWingspan() {
+        cout << this->Wingspan << " m" << endl;
+    }
+    float getTakeoff_run() {
+        cout << this->Takeoff_run << " m" << endl;
+    }
+    float getWing_loading() {
+        cout << this->Wing_loading << " kg" << endl;
+    }
 
 protected:
     float Wingspan;
@@ -42,7 +89,7 @@ protected:
 class ScrewAircraft : public Airplane {
 public:
     int getNumber_of_props() {
-        return this->Number_of_props;
+        cout << this->Number_of_props << " props" << endl;
     }
 protected:
     int Number_of_props;
@@ -51,29 +98,25 @@ protected:
 class JetAircraft : public Airplane {
 public:
     int getNumber_of_jets() {
-        return this->Number_of_jets;
+        cout << this->Number_of_jets << " jets" << endl;
     }
 protected:
     int Number_of_jets;
 };
 
-class Amphibious_aircraft : public Airplane {
+class Amphibious_aircraft : public ScrewAircraft {
 public:
-    int getNumber_of_() {
-        return this->Number_of_jets;
-    }
-protected:
-    int Number_of_jets;
+    
 };
 
 
 class Helicopter : public FlyingMachine {
 public:
     float getPropeller_width() {
-        return Propeller_width;
+        cout << this->Propeller_width << " m" << endl;
     }
     float getRate_of_climb() {
-        return Rate_of_climb;
+        cout << this->Rate_of_climb << " km/h" << endl;
     }
 
 protected:
