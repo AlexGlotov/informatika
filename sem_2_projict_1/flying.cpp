@@ -26,6 +26,7 @@ public:
             cin >> u;
             if (u <= this->MaxSpeed && u >= (-1) * this->MaxSpeed) {
                 this->speed = u;
+                consumption(this->Fuel_consumption,this->speed);
                 cout << endl;
                 return;
             }
@@ -62,13 +63,13 @@ protected:
     float cons_speed;
 };
 
-class Airport {
+class Airport: public FlyingMachine {
     int Ammount_of_space;
     int coord_x;
     int coord_y;
 };
 
-class Airplane : public FlyingMachine {
+class Airplane : public Airport {
 
 public:
     float getWingspan() {
@@ -107,7 +108,7 @@ protected:
 
 class Amphibious_aircraft : public ScrewAircraft {
 public:
-    
+
 };
 
 
